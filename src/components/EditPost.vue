@@ -6,8 +6,8 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-            color="deep-purple lighten-2"
-            text
+          color="deep-purple lighten-2"
+          text
           v-bind="attrs"
           v-on="on"
         >
@@ -49,7 +49,7 @@
           <v-btn
             color="primary"
             text
-            @click="createPost"
+            @click="editPost"
           >
             작성하기
           </v-btn>
@@ -74,7 +74,7 @@
         return this.$store.getters.listLength
       },
       getDetailPost() {
-          return this.$store.getters.getPostList[this.itemId]
+        return this.$store.getters.getPostList[this.itemId]
       }
     },
     mounted() {
@@ -83,12 +83,12 @@
         this.explain = this.getDetailPost.explain;
     },
     methods: {
-        createPost () {
+        editPost () {
             const payload = {
                 title: this.title,
                 location: this.location,
                 explain: this.explain,
-                key: this.listLength + 1
+                key: this.listLength
             }
             this.$store.dispatch('editPost', payload)
             this.dialog = !this.dialog
