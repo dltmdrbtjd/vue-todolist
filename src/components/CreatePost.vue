@@ -80,7 +80,7 @@
                 title: this.title,
                 location: this.location,
                 explain: this.explain,
-                key: this.listLength + 1
+                key: this.listLength
             }
             this.$store.dispatch('createPost', payload)
             this.dialog = !this.dialog
