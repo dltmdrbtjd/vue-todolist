@@ -26,6 +26,7 @@
           <v-btn
             color="deep-purple lighten-2"
             text
+            @click="deletePost(item.key)"
           >
             게시글 삭제하기
           </v-btn>
@@ -48,8 +49,13 @@ export default {
     },
     computed: {
       shopList() {
-        return this.$store.getters.getPostList
+        return this.$store.state.home.list
       },
+    },
+    methods: {
+      deletePost(idx) {
+        this.$store.commit('deletePost', idx)
+      }
     }
 }
 </script>
