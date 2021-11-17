@@ -51,7 +51,7 @@
             text
             @click="editPost"
           >
-            작성하기
+            수정하기
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -69,18 +69,10 @@
       }
     },
     props: ['itemId'],
-    computed: {
-      listLength() {
-        return this.$store.getters.listLength
-      },
-      getDetailPost() {
-        return this.$store.getters.getPostList[this.itemId]
-      }
-    },
     mounted() {
-        this.title = this.getDetailPost.title;
-        this.location = this.getDetailPost.location;
-        this.explain = this.getDetailPost.explain;
+      this.title = this.$store.state.home.list[this.itemId].title
+      this.location = this.$store.state.home.list[this.itemId].location
+      this.explain = this.$store.state.home.list[this.itemId].explain
     },
     methods: {
         editPost () {
@@ -88,13 +80,11 @@
                 title: this.title,
                 location: this.location,
                 explain: this.explain,
-                key: this.listLength
+                key: this.itemId
             }
-            this.$store.dispatch('editPost', payload)
+            console.log(this.title, this.location, this.explain, this.itemId)
+            this.$store.commit('editPost', payload)
             this.dialog = !this.dialog
-            this.title = ""
-            this.location = ""
-            this.explain = ""
         }
     }
   }
