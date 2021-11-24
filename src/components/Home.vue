@@ -47,6 +47,9 @@ export default {
     components: {
       EditPost,
     },
+    mounted() {
+      this.$store.dispatch('getLoadPost')
+    },
     computed: {
       shopList() {
         return this.$store.state.home.list

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const home = {
   state: {
     list: [
@@ -21,6 +23,7 @@ const home = {
         key: 2,
       },
     ],
+    apiTestList: [],
   },
   getters: {
     listLength(state) {
@@ -45,6 +48,9 @@ const home = {
       const idx = state.list.findIndex((item) => item.key === payload);
       state.list.splice(idx, 1);
     },
+    loadPost(state, payload) {
+      state.apiTestList.push(payload);
+    },
   },
   actions: {
     createPost: ({ commit }, payload) => {
@@ -52,6 +58,12 @@ const home = {
     },
     editPost: ({ commit }, payload) => {
       commit('editPost', payload);
+    },
+    getLoadPost: ({ commit }) => {
+      axios.get('http://localhost:4444/books').then((res) => {
+        console.log(res.data);
+        commit('loadPost', res.data);
+      });
     },
   },
 };
