@@ -70,9 +70,10 @@
     },
     props: ['itemId'],
     mounted() {
-      this.title = this.$store.state.home.list[this.itemId].title
-      this.location = this.$store.state.home.list[this.itemId].location
-      this.explain = this.$store.state.home.list[this.itemId].explain
+      const data = this.$store.state.home.list.find((item) => item.id === this.itemId)
+      this.title = data.title
+      this.location = data.location
+      this.explain = data.explain
     },
     methods: {
         editPost () {
