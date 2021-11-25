@@ -5,7 +5,7 @@
         class="mx-auto my-12"
         max-width="374"
         v-for="item in shopList"
-        :key="item.key"
+        :key="item.id"
       >
         <v-img
           height="250"
@@ -22,11 +22,11 @@
           <div>{{ item.explain }}</div>
         </v-card-text>
         <v-card-actions>
-          <edit-post :itemId="item.key"></edit-post>
+          <edit-post :itemId="item.id"></edit-post>
           <v-btn
             color="deep-purple lighten-2"
             text
-            @click="deletePost(item.key)"
+            @click="deletePost(item.id)"
           >
             게시글 삭제하기
           </v-btn>
@@ -52,7 +52,7 @@ export default {
     },
     computed: {
       shopList() {
-        return this.$store.state.home.list
+        return this.$store.getters.loadPostData;
       },
     },
     methods: {
