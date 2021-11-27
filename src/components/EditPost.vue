@@ -81,10 +81,9 @@
                 title: this.title,
                 location: this.location,
                 explain: this.explain,
-                key: this.itemId
+                id: this.itemId
             }
-            console.log(this.title, this.location, this.explain, this.itemId)
-            this.$store.commit('editPost', payload)
+            this.$store.dispatch('editPost', payload)
             this.dialog = !this.dialog
         }
     }
