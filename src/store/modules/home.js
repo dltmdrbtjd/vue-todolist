@@ -41,11 +41,20 @@ const home = {
       });
     },
     editPost: ({ commit }, payload) => {
-      commit('editPost', payload);
+      axios
+        .patch(`http://localhost:4444/books/${payload.id}`, payload)
+        .then(() => {
+          commit('edtiPost', payload);
+        });
     },
     getLoadPost: ({ commit }) => {
       axios.get('http://localhost:4444/books').then((res) => {
         commit('loadPost', res.data.data);
+      });
+    },
+    deletePost: ({ commit }, payload) => {
+      axios.delete(`http://localhost:4444/books/${payload}`).then(() => {
+        commit('deletePost', payload);
       });
     },
   },
