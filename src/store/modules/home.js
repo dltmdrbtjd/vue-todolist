@@ -44,7 +44,7 @@ const home = {
       axios
         .patch(`http://localhost:4444/books/${payload.id}`, payload)
         .then(() => {
-          commit('edtiPost', payload);
+          commit('editPost', payload);
         });
     },
     getLoadPost: ({ commit }) => {
